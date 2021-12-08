@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document("books")
-public class VirtualLibrary {
+public class Book {
 
     @Id
     private String id;
@@ -19,8 +19,8 @@ public class VirtualLibrary {
     private String[] authors;
     private String[] categories;
 
-    public VirtualLibrary(String id, String title, int isbn, int pageCount, String publishedDate, String thumbnailUrl,
-                          String shortDescription, String longDescription, String status, String[] authors, String[] categories) {
+    public Book(String id, String title, int isbn, int pageCount, String publishedDate, String thumbnailUrl,
+                String shortDescription, String longDescription, String status, String[] authors, String[] categories) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -34,7 +34,7 @@ public class VirtualLibrary {
         this.categories = categories;
     }
 
-    public VirtualLibrary() {}
+    public Book() {}
 
     public String getId() {
         return id;
