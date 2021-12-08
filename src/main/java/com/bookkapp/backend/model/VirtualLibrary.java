@@ -35,6 +35,10 @@ public class VirtualLibrary {
     }
 
     public VirtualLibrary() {}
+
+    public String getId() {
+        return id;
+    }
 }
 
 
