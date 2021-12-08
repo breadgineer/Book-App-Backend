@@ -16,11 +16,11 @@ public class VirtualLibrary {
     private String shortDescription;
     private String longDescription;
     private String status;
-    private String authors;
-    private String categories;
+    private String[] authors;
+    private String[] categories;
 
     public VirtualLibrary(String id, String title, int isbn, int pageCount, String publishedDate, String thumbnailUrl,
-                          String shortDescription, String longDescription, String status, String authors, String categories) {
+                          String shortDescription, String longDescription, String status, String[] authors, String[] categories) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
