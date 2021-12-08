@@ -1,21 +1,17 @@
 package com.bookkapp.backend.model;
 
-import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
-
-@Getter
 @Document("books")
 public class VirtualLibrary {
 
     @Id
-    private Integer _id;
+    private String id;
     private String title;
-    private String isbn;
+    private int isbn;
     private int pageCount;
-    private Date publishedDate;
+    private String publishedDate;
     private String thumbnailUrl;
     private String shortDescription;
     private String longDescription;
@@ -23,9 +19,9 @@ public class VirtualLibrary {
     private String[] authors;
     private String[] categories;
 
-    public VirtualLibrary(Integer _id, String title, String isbn, int pageCount, Date publishedDate, String thumbnailUrl,
+    public VirtualLibrary(String id, String title, int isbn, int pageCount, String publishedDate, String thumbnailUrl,
                           String shortDescription, String longDescription, String status, String[] authors, String[] categories) {
-        this._id = _id;
+        this.id = id;
         this.title = title;
         this.isbn = isbn;
         this.pageCount = pageCount;
@@ -36,6 +32,12 @@ public class VirtualLibrary {
         this.status = status;
         this.authors = authors;
         this.categories = categories;
+    }
+
+    public VirtualLibrary() {}
+
+    public String getId() {
+        return id;
     }
 }
 
