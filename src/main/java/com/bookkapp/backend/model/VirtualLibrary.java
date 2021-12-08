@@ -3,7 +3,7 @@ package com.bookkapp.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("virtuallibrary")
+@Document("books")
 public class VirtualLibrary {
 
     @Id
