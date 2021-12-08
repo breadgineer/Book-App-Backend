@@ -1,34 +1,38 @@
 package com.bookkapp.backend.Services;
 
-import com.bookkapp.backend.model.VirtualLibrary;
+import com.bookkapp.backend.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @EnableMongoRepositories
+@Service
 public class BooksActions {
 
-    @Autowired
     BooksDatabaseInterface books;
 
-    public List<VirtualLibrary> getAllBooks() {
+    public BooksActions(BooksDatabaseInterface books) {
+        this.books = books;
+    }
+
+    public List<Book> getAllBooks() {
         return books.findAll();
     }
 
-    public Optional<VirtualLibrary> getBookByID(String id) {
+    public Optional<Book> getBookByID(String id) {
         return books.findById(id);
     }
 
-    public String addBook(VirtualLibrary bookItem) {
-        books.save(bookItem);
-        return "Book with ID: " + bookItem.getId() + " was succesfully added to database";
+    public Book addBook(Book book) {
+        books.save(book);
+        return book;
     }
 
-    public String deleteBook(String id) {
+    public void deleteBook(String id) {
         books.deleteById(id);
-        return "Book with ID: " + id + " was succesfully removed from database";
     }
 
 }
