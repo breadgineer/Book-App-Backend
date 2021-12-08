@@ -2,12 +2,9 @@ package com.bookkapp.backend.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Getter
@@ -20,7 +17,7 @@ public class Book {
     private String title;
     private String isbn;
     private int pageCount;
-//    private Timestamp publishedDate;
+    private Date publishedDate;
     private String thumbnailUrl;
     private String shortDescription;
     private String longDescription;
@@ -32,7 +29,7 @@ public class Book {
                 String title,
                 String isbn,
                 int pageCount,
-//                Timestamp publishedDate,
+                Date publishedDate,
                 String thumbnailUrl,
                 String shortDescription,
                 String longDescription,
@@ -44,7 +41,7 @@ public class Book {
         this.title = title;
         this.isbn = isbn;
         this.pageCount = pageCount;
-//        this.publishedDate = publishedDate;
+        this.publishedDate = publishedDate;
         this.thumbnailUrl = thumbnailUrl;
         this.shortDescription = shortDescription;
         this.longDescription = longDescription;
