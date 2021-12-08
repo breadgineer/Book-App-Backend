@@ -12,7 +12,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api/books/")
+@RequestMapping("/api/books")
 public class BooksController {
 
     BooksActions booksActions;
@@ -54,10 +54,10 @@ public class BooksController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deleteBook(@PathVariable("id") String id) {
+    public ResponseEntity<String> deleteBook(@PathVariable("id") String id) {
         try {
             booksActions.deleteBook(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("removed",HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

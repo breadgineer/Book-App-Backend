@@ -2,8 +2,10 @@ package com.bookkapp.backend.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -13,7 +15,7 @@ import java.util.Date;
 @Document("books")
 public class Book {
 
-    @Id
+    @MongoId
     private Integer _id;
     private String title;
     private String isbn;
