@@ -82,14 +82,14 @@ public class BooksController {
 //    Endpoint for posting a new book. Data should be sent as a JSON formatted
 //    as the model described on line 14
     @PostMapping
-    public ResponseEntity<HttpStatus> postBook(@RequestBody Book book) {
+    public ResponseEntity<String> postBook(@RequestBody Book book) {
         try {
             String bookID = book.get_id().toString();
-            if (booksActions.getBookByID(bookID).isPresent()){
+            if (booksActions.getBookByID(bookID).isEmpty()){
                 Book _book = booksActions.addBook(book);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
-                return new ResponseEntity<>(HttpStatus.CONFLICT);
+                return new ResponseEntity<>("The book already exists", HttpStatus.CONFLICT);
             }
         }
         catch (Exception e) {
