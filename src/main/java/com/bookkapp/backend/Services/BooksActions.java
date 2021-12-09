@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+// class to serve the model object
 @EnableMongoRepositories
 @Service
 public class BooksActions {
@@ -18,19 +19,23 @@ public class BooksActions {
         this.books = books;
     }
 
+// method to list all books from db
     public List<Book> getAllBooks() {
         return books.findAll();
     }
 
+// method to list a book by id
     public Optional<Book> getBookByID(String id) {
         return books.findById(id);
     }
 
+// method to add a book
     public Book addBook(Book book) {
         books.save(book);
         return book;
     }
 
+// method to delete a book
     public void deleteBook(String id) {
         books.deleteById(id);
     }

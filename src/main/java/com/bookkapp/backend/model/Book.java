@@ -7,11 +7,13 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 
+// model object
 @Getter
 @Setter
 @Document("books")
 public class Book {
 
+    // declaration of items
     @MongoId
     private Integer _id;
     private String title;
@@ -25,6 +27,7 @@ public class Book {
     private String[] authors;
     private String[] categories;
 
+    // constructor with all arguments
     public Book(Integer _id,
                 String title,
                 String isbn,
