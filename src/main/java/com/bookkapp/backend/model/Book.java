@@ -17,40 +17,40 @@ public class Book {
     @MongoId
     private Integer _id;
     private String title;
-    private String isbn;
-    private int pageCount;
+//    private String isbn;
+//    private int pageCount;
     private Date publishedDate;
-    private String thumbnailUrl;
-    private String shortDescription;
+//    private String thumbnailUrl;
+//    private String shortDescription;
     private String longDescription;
-    private String status;
+//    private String status;
     private String[] authors;
-    private String[] categories;
+//    private String[] categories;
 
     // constructor with all arguments
     public Book(Integer _id,
                 String title,
-                String isbn,
-                int pageCount,
+//                String isbn,
+//                int pageCount,
                 Date publishedDate,
-                String thumbnailUrl,
-                String shortDescription,
+//                String thumbnailUrl,
+//                String shortDescription,
                 String longDescription,
-                String status,
-                String[] authors,
-                String[] categories)
-    {
+//                String status,
+                String[] authors
+//                String[] categories
+                ) {
         this._id = _id;
         this.title = title;
-        this.isbn = isbn;
-        this.pageCount = pageCount;
+//        this.isbn = isbn;
+//        this.pageCount = pageCount;
         this.publishedDate = publishedDate;
-        this.thumbnailUrl = thumbnailUrl;
-        this.shortDescription = shortDescription;
+//        this.thumbnailUrl = thumbnailUrl;
+//        this.shortDescription = shortDescription;
         this.longDescription = longDescription;
-        this.status = status;
+//        this.status = status;
         this.authors = authors;
-        this.categories = categories;
+//        this.categories = categories;
     }
 }
 
