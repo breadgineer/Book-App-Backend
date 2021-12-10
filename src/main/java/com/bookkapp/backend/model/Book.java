@@ -24,7 +24,7 @@ public class Book {
 //    private String shortDescription;
     private String longDescription;
 //    private String status;
-    private String[] authors;
+    private String authors;
 //    private String[] categories;
 
     // constructor with all arguments
@@ -37,7 +37,7 @@ public class Book {
 //                String shortDescription,
                 String longDescription,
 //                String status,
-                String[] authors
+                String authors
 //                String[] categories
                 ) {
         this._id = _id;
