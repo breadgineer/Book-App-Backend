@@ -1,5 +1,6 @@
 package com.bookkapp.backend.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,7 +16,7 @@ public class Book {
 
     // declaration of items
     @MongoId
-    private Integer _id;
+    private String _id;
     private String title;
     //    private String isbn;
 //    private int pageCount;
@@ -32,7 +33,7 @@ public class Book {
     }
 
     // constructor with all arguments
-    public Book(Integer _id,
+    public Book(String _id,
                 String title,
 //                String isbn,
 //                int pageCount,

@@ -50,9 +50,12 @@ public class BooksController {
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookByID(@PathVariable("id") String id){
         Optional<Book> book = booksActions.getBookByID(id);
+        System.out.println("dostal som knihu");
         if (book.isPresent()) {
+            System.out.println("kniha bola odoslana");
             return new ResponseEntity<>(book.get(), HttpStatus.FOUND);
-        } else{
+        } else {
+            System.out.println("kniha nebola odoslana");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -70,8 +73,10 @@ public class BooksController {
     }
 
 //    Endpoint for getting a single book by its ID
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable("id") String id) {
+        System.out.println(id);
         try {
             booksActions.deleteBook(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -87,7 +92,7 @@ public class BooksController {
     public ResponseEntity<String> postBook(@RequestBody Book book) {
         System.out.println(book.get_id());
         try {
-            String bookID = book.get_id().toString();
+            String bookID = book.get_id();
             if (booksActions.getBookByID(bookID).isEmpty()){
                 Book _book = booksActions.addBook(book);
                 return new ResponseEntity<>(HttpStatus.CREATED);

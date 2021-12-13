@@ -26,6 +26,7 @@ public class BooksActions {
 
 // method to list a book by id
     public Optional<Book> getBookByID(String id) {
+        System.out.println(books.findById(id));
         return books.findById(id);
     }
 
@@ -38,6 +39,7 @@ public class BooksActions {
 // method to delete a book
     public void deleteBook(String id) {
         books.deleteById(id);
+        System.out.println("book was delete");
     }
 
 }
