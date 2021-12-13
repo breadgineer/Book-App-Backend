@@ -53,7 +53,7 @@ public class BooksController {
         System.out.println("dostal som knihu");
         if (book.isPresent()) {
             System.out.println("kniha bola odoslana");
-            return new ResponseEntity<>(book.get(), HttpStatus.FOUND);
+            return new ResponseEntity<>(book.get(), HttpStatus.OK);
         } else {
             System.out.println("kniha nebola odoslana");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -113,6 +113,7 @@ public class BooksController {
         System.out.println("dostal som knihu");
         if (book.isPresent()) {
             Book _book = book.get();
+            _book.set_id(bookData.get_id());
             _book.setTitle(bookData.getTitle());
             _book.setAuthors(bookData.getAuthors());
             _book.setLongDescription(bookData.getLongDescription());
