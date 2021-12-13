@@ -52,10 +52,8 @@ public class BooksController {
         Optional<Book> book = booksActions.getBookByID(id);
         System.out.println("dostal som knihu");
         if (book.isPresent()) {
-            System.out.println("kniha bola odoslana");
             return new ResponseEntity<>(book.get(), HttpStatus.OK);
         } else {
-            System.out.println("kniha nebola odoslana");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -110,7 +108,6 @@ public class BooksController {
     @PutMapping
     public ResponseEntity<String> updateBook(@RequestBody Book bookData) {
         Optional<Book> book = booksActions.getBookByID(bookData.get_id());
-        System.out.println("dostal som knihu");
         if (book.isPresent()) {
             Book _book = book.get();
             _book.set_id(bookData.get_id());
@@ -122,7 +119,6 @@ public class BooksController {
             return new ResponseEntity<>(HttpStatus.OK);
 
         } else {
-            System.out.println("kniha nebola odoslana");
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
