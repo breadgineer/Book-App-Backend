@@ -17,15 +17,19 @@ public class Book {
     @MongoId
     private Integer _id;
     private String title;
-//    private String isbn;
+    //    private String isbn;
 //    private int pageCount;
     private Date publishedDate;
-//    private String thumbnailUrl;
+    //    private String thumbnailUrl;
 //    private String shortDescription;
     private String longDescription;
-//    private String status;
+    //    private String status;
     private String[] authors;
 //    private String[] categories;
+
+
+    public Book() {
+    }
 
     // constructor with all arguments
     public Book(Integer _id,
@@ -39,7 +43,7 @@ public class Book {
 //                String status,
                 String[] authors
 //                String[] categories
-                ) {
+    ) {
         this._id = _id;
         this.title = title;
 //        this.isbn = isbn;
