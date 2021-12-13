@@ -106,4 +106,25 @@ public class BooksController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping
+    public ResponseEntity<String> updateBook(@RequestBody Book bookData) {
+        Optional<Book> book = booksActions.getBookByID(bookData.get_id());
+        System.out.println("dostal som knihu");
+        if (book.isPresent()) {
+            Book _book = book.get();
+            _book.setTitle(bookData.getTitle());
+            _book.setAuthors(bookData.getAuthors());
+            _book.setLongDescription(bookData.getLongDescription());
+            _book.setPublishedDate(bookData.getPublishedDate());
+            booksActions.updateBook(_book);
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } else {
+            System.out.println("kniha nebola odoslana");
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

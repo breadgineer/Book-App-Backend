@@ -41,5 +41,9 @@ public class BooksActions {
         books.deleteById(id);
         System.out.println("book was delete");
     }
+    // method to delete a book
+    public void updateBook(Book book) {
+        books.save(book);
+    }
 
 }

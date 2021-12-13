@@ -1,6 +1,5 @@
 package com.bookkapp.backend.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 import java.util.Date;
 
 // model object
+
 @Getter
 @Setter
 @Document("books")
@@ -57,6 +57,8 @@ public class Book {
         this.authors = authors;
 //        this.categories = categories;
     }
+
+
 }
 
 
