@@ -46,6 +46,7 @@ public class BooksController {
     }
 
 //    Endpoint for getting a single book by its ID
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookByID(@PathVariable("id") String id){
         Optional<Book> book = booksActions.getBookByID(id);
@@ -81,8 +82,10 @@ public class BooksController {
 
 //    Endpoint for posting a new book. Data should be sent as a JSON formatted
 //    as the model described on line 14
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<String> postBook(@RequestBody Book book) {
+        System.out.println(book.get_id());
         try {
             String bookID = book.get_id().toString();
             if (booksActions.getBookByID(bookID).isEmpty()){
@@ -93,7 +96,8 @@ public class BooksController {
             }
         }
         catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
