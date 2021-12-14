@@ -32,7 +32,7 @@ public class UserActions {
     }
     // method to update a user
     public void updateUser(User user) {
-        userDatabase.deleteById(user.get_id());
+        userDatabase.deleteByName(user.get_name());
         userDatabase.save(user);
     }
 
