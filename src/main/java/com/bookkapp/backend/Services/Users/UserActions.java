@@ -1,4 +1,6 @@
-import com.bookkapp.backend.Services.Users.UserDatabaseInterface;
+package com.bookkapp.backend.Services.Users;
+
+import com.bookkapp.backend.model.User;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;
 
@@ -31,10 +33,11 @@ public class UserActions {
         return user;
     }
     // method to update a user
-    public void updateUser(User user) {
-        userDatabase.deleteByName(user.get_name());
-        userDatabase.save(user);
-    }
+    // not required by now
+//    public void updateUser(User user) {
+//        userDatabase.deleteByName(user.get_name());
+//        userDatabase.save(user);
+//    }
 
     // method to delete a user
     public void deleteUser(String id) {
