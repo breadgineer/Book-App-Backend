@@ -50,7 +50,6 @@ public class BooksController {
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookByID(@PathVariable("id") String id){
         Optional<Book> book = booksActions.getBookByID(id);
-        System.out.println("dostal som knihu");
         if (book.isPresent()) {
             return new ResponseEntity<>(book.get(), HttpStatus.OK);
         } else {
@@ -74,7 +73,6 @@ public class BooksController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteBook(@PathVariable("id") String id) {
-        System.out.println(id);
         try {
             booksActions.deleteBook(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -88,7 +86,6 @@ public class BooksController {
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<String> postBook(@RequestBody Book book) {
-        System.out.println(book.get_id());
         try {
             String bookID = book.get_id();
             if (booksActions.getBookByID(bookID).isEmpty()){
@@ -114,6 +111,7 @@ public class BooksController {
             _book.setTitle(bookData.getTitle());
             _book.setAuthors(bookData.getAuthors());
             _book.setLongDescription(bookData.getLongDescription());
+            _book.setShortDescription(bookData.getShortDescription());
             _book.setPublishedDate(bookData.getPublishedDate());
             booksActions.updateBook(_book);
             return new ResponseEntity<>(HttpStatus.OK);

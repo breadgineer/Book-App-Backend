@@ -22,7 +22,7 @@ public class Book {
 //    private int pageCount;
     private Date publishedDate;
     //    private String thumbnailUrl;
-//    private String shortDescription;
+    private String shortDescription;
     private String longDescription;
     //    private String status;
     private String[] authors;
@@ -39,7 +39,7 @@ public class Book {
 //                int pageCount,
                 Date publishedDate,
 //                String thumbnailUrl,
-//                String shortDescription,
+                String shortDescription,
                 String longDescription,
 //                String status,
                 String[] authors
@@ -51,14 +51,12 @@ public class Book {
 //        this.pageCount = pageCount;
         this.publishedDate = publishedDate;
 //        this.thumbnailUrl = thumbnailUrl;
-//        this.shortDescription = shortDescription;
+        this.shortDescription = shortDescription;
         this.longDescription = longDescription;
 //        this.status = status;
         this.authors = authors;
 //        this.categories = categories;
     }
-
-
 }
 
 
