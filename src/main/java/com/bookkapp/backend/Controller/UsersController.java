@@ -10,6 +10,7 @@ import java.lang.management.OperatingSystemMXBean;
 import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
+import java.util.Arrays;
 
 // REST API built for handling CR(U*)D operations of the user database
 //*Updating not implemented
@@ -56,7 +57,17 @@ public class UsersController {
         try {
             String userID = user.get_id();
             if (userActions.getUserByID(userID).isEmpty()) {
-                User _user = userActions.addUser(user);
+                User _user = new User();
+                _user.set_id(user.get_id());
+                _user.setUserEmail(user.getUserEmail());
+                _user.setUserPwd(user.getUserPwd());
+                _user.setUserRole(user.getUserRole());
+                if (_user.getUserRole().equals("superuser")) {
+                    _user.setSuperUserPermission(user.getSuperUserPermission());
+                } else {
+                    _user.setUserPermission(user.getUserPermission());
+                }
+                userActions.addUser(_user);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
