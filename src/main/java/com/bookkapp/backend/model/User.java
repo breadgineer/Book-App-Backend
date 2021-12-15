@@ -17,13 +17,15 @@ public class User {
     private String _id;
     private String userEmail;
     private String userPwd;
+    private String userRole;
 
     public User() {}
 
     // constructor with all arguments
-    public User(String _id, String userEmail, String userPwd) {
+    public User(String _id, String userEmail, String userPwd, String userRole) {
         this._id = _id;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
+        this.userRole = userRole;
     }
 }

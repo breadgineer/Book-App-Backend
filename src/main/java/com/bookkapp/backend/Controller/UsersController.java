@@ -28,7 +28,7 @@ public class UsersController {
 //    @GetMapping("/{id}")
 //    public ResponseEntity<User> getUserByID(@PathVariable("id") String id) {
 //        Optional<User> user = userActions.getUserByID(id);
-//        System.out.println("nasiel som usera");
+//        System.out.println("User found.");
 //        if (user.isPresent()) {
 //            return new ResponseEntity<>(user.get(), HttpStatus.OK);
 //        } else {
@@ -59,7 +59,7 @@ public class UsersController {
                 User _user = userActions.addUser(user);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
-                return new ResponseEntity<>("User already exists", HttpStatus.CONFLICT);
+                return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
             }
         }
         catch (Exception e) {

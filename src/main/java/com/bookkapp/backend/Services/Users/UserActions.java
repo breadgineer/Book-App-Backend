@@ -42,7 +42,7 @@ public class UserActions {
     // method to delete a user
     public void deleteUser(String id) {
         userDatabase.deleteById(id);
-        System.out.println("user was delete");
+        System.out.println("User has been deleted.");
     }
 
 }
