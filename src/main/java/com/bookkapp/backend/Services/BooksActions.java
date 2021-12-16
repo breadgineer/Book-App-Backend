@@ -45,4 +45,18 @@ public class BooksActions {
         books.deleteById(id);
     }
 
+    //method to borrow a book
+    public boolean borrowBook(String id) {
+        Optional<Book> book = books.findById(id);
+        if (book.isPresent()) {
+            if (book.get().getAvailableCopies() > 0) {
+                book.get().setAvailableCopies(book.get().getAvailableCopies() - 1);
+                books.deleteById(id);
+                books.save(book.get());
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

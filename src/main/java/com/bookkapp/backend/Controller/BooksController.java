@@ -121,5 +121,15 @@ public class BooksController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(value = "/borrow/{id}")
+    public ResponseEntity<String> borrowBook(@RequestBody String id) {
+        if (booksActions.borrowBook(id)) {
+            return new ResponseEntity<>("Book was successfully borrowed.",HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("All available copies are already on loan.", HttpStatus.CONFLICT);
+        }
+    }
+
 
 }
