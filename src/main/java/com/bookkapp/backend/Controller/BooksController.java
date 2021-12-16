@@ -42,6 +42,7 @@ public class BooksController {
             return new ResponseEntity<>(books, HttpStatus.OK);
         }
         catch(Exception e){
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -87,9 +88,16 @@ public class BooksController {
             _book.set_id(bookData.get_id());
             _book.setTitle(bookData.getTitle());
             _book.setAuthors(bookData.getAuthors());
+            if (_book.getBorrowBookDetails() != null) {
+                _book.setAvailableCopies(bookData.getCopies() - _book.getBorrowBookDetails().length);
+            } else {
+                _book.setAvailableCopies(bookData.getCopies());
+            }
+            _book.setCopies(bookData.getCopies());
             _book.setLongDescription(bookData.getLongDescription());
             _book.setShortDescription(bookData.getShortDescription());
             _book.setPublishedDate(bookData.getPublishedDate());
+            _book.setBorrow(bookData.isBorrow());
             booksActions.updateBook(_book);
             return new ResponseEntity<>(HttpStatus.OK);
 
@@ -100,12 +108,15 @@ public class BooksController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(value = "/borrow/{id}")
-    public ResponseEntity<String> borrowBook(@RequestBody String id) {
-        if (booksActions.borrowBook(id)) {
-            return new ResponseEntity<>("Book was successfully borrowed.",HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("All available copies are already on loan.", HttpStatus.CONFLICT);
-        }
+    public ResponseEntity<Book> borrowBook(@RequestBody String id) {
+
+            Optional<Book> book = booksActions.borrowBook(id);
+            if (book.isPresent())
+                return new ResponseEntity<>(book.get(),HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+
+
     }
 
 

@@ -22,6 +22,7 @@ public class Book {
     private String shortDescription;
     private String longDescription;
     private String[] authors;
+    private boolean isBorrow = false;
     private int copies;
     private int availableCopies;
     private BorrowBook[] borrowBookDetails;
