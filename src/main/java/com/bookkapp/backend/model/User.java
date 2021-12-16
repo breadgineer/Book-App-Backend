@@ -33,6 +33,8 @@ public class User {
         this.roles = roles;
     }
 
+    public User() {}
+
     public String get_id() {
         return _id;
     }
