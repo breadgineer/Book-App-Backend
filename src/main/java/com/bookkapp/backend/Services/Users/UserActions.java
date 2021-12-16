@@ -32,12 +32,7 @@ public class UserActions {
         userDatabase.save(user);
         return user;
     }
-    
-    // method to add a superuser
-    public User addSuperUser(User user) {
-        userDatabase.save(user);
-        return user;
-    }
+
 
     // method to update a user
     // not required by now

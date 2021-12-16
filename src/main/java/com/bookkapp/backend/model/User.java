@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
+//import javax.persistence.*;
 import java.util.List;
 
 // user model object

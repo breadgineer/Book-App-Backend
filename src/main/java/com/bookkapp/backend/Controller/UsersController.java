@@ -1,17 +1,12 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
-import com.bookkapp.backend.model.Book;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.management.OperatingSystemMXBean;
-import java.sql.SQLOutput;
 import java.util.List;
-import java.util.Optional;
-import java.util.Arrays;
 
 // REST API built for handling CR(U*)D operations of the user database
 //*Updating not implemented
@@ -22,21 +17,14 @@ public class UsersController {
     UserActions userActions;
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
+//        Hard coded users for demo puposes only
+        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}));
+        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
     }
 
-    // Endpoint for getting a single user by its ID
-    // Implementation not required for now
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getUserByID(@PathVariable("id") String id) {
-//        Optional<User> user = userActions.getUserByID(id);
-//        System.out.println("User found.");
-//        if (user.isPresent()) {
-//            return new ResponseEntity<>(user.get(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
 
     //    Endpoint for getting all the users from the database
     @GetMapping("/all")
