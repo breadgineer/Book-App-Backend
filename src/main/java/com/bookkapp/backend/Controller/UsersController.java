@@ -64,10 +64,11 @@ public class UsersController {
                 _user.setUserRole(user.getUserRole());
                 if (_user.getUserRole().equals("superuser")) {
                     _user.setSuperUserPermission(user.getSuperUserPermission());
+                    userActions.addUser(_user);
                 } else {
                     _user.setUserPermission(user.getUserPermission());
+                    userActions.addUser(_user);
                 }
-                userActions.addUser(_user);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
