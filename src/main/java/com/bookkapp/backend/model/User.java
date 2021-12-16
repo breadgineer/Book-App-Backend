@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import javax.persistence.*;
+import java.util.List;
 
 // user model object
 
@@ -20,19 +21,17 @@ public class User {
     private String userEmail;
     private String userPwd;
     private String userRole;
-    private String userPermission = "borrow_book";
-    private String[] superUserPermission = {"borrow_book", "manage_users"};
+    private String[] userPermission;
 
     public User() {}
 
     // constructor with all arguments
     public User(String _id, String userEmail, String userPwd, String userRole,
-                String userPermission, String[] superUserPermission) {
+                String[] userPermission) {
         this._id = _id;
         this.userEmail = userEmail;
         this.userPwd = userPwd;
         this.userRole = userRole;
         this.userPermission = userPermission;
-        this.superUserPermission = superUserPermission;
     }
 }

@@ -1,6 +1,7 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
+import com.bookkapp.backend.model.Book;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -57,18 +58,7 @@ public class UsersController {
         try {
             String userID = user.get_id();
             if (userActions.getUserByID(userID).isEmpty()) {
-                User _user = new User();
-                _user.set_id(user.get_id());
-                _user.setUserEmail(user.getUserEmail());
-                _user.setUserPwd(user.getUserPwd());
-                _user.setUserRole(user.getUserRole());
-                if (_user.getUserRole().equals("superuser")) {
-                    _user.setSuperUserPermission(user.getSuperUserPermission());
-                    userActions.addUser(_user);
-                } else {
-                    _user.setUserPermission(user.getUserPermission());
-                    userActions.addUser(_user);
-                }
+                User _user = userActions.addUser(user);
                 return new ResponseEntity<>(HttpStatus.CREATED);
             } else {
                 return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
