@@ -1,7 +1,6 @@
-package com.bookkapp.backend.Services;
+package com.bookkapp.backend.Services.Books;
 
 import com.bookkapp.backend.model.Book;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;
 

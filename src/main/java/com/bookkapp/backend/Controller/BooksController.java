@@ -1,7 +1,7 @@
 package com.bookkapp.backend.Controller;
 
 
-import com.bookkapp.backend.Services.BooksActions;
+import com.bookkapp.backend.Services.Books.BooksActions;
 import com.bookkapp.backend.model.Book;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,29 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
-// Sample JSON object
-/*
-     {
-        "_id": 10,
-        "title": "OSGi in Depth",
-        "isbn": "193518217X",
-        "pageCount": 325,
-        "publishedDate": "2011-12-12T00:00:00.000-0800",
-        "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/alves.jpg",
-        "shortDescription": "Enterprise ...",
-        "longDescription": "A good application ...",
-        "status": "PUBLISH",
-        "authors":
-        [
-            "Alexandre de Castro Alves"
-        ],
-        "categories":
-        [
-            "Java"
-        ]
-    }
-  */
 
 // REST API built for handling CR(U*)D operations of the book database
 //*Updating not implemented

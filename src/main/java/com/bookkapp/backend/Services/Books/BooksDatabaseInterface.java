@@ -1,4 +1,4 @@
-package com.bookkapp.backend.Services;
+package com.bookkapp.backend.Services.Books;
 
 
 import com.bookkapp.backend.model.Book;
