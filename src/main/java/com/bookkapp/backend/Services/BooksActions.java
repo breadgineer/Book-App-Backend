@@ -1,5 +1,6 @@
-package com.bookkapp.backend.Services.Books;
+package com.bookkapp.backend.Services;
 
+import com.bookkapp.backend.Repository.BooksDatabaseInterface;
 import com.bookkapp.backend.model.Book;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;

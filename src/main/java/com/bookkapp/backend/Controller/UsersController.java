@@ -1,6 +1,6 @@
 package com.bookkapp.backend.Controller;
 
-import com.bookkapp.backend.Services.Users.UserActions;
+import com.bookkapp.backend.Services.UserActions;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,11 @@ public class UsersController {
     UserActions userActions;
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
-//        Hard coded users for demo puposes only
-        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}));
-        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
+//        Hard coded users for demo puproses only
+//        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser"));
+//        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user"));
+//        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user"));
+//        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user"));
     }
 
 
