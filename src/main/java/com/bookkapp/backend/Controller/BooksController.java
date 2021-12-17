@@ -3,8 +3,10 @@ package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.BooksActions;
 import com.bookkapp.backend.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class BooksController {
 
 //    bookActions service injection into the controller
+    @Autowired
     BooksActions booksActions;
     public BooksController(BooksActions booksActions) {
         this.booksActions = booksActions;
