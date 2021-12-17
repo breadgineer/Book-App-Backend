@@ -37,17 +37,17 @@ public class BookAppBackendApplication {
 
         return args -> {
 
-            Role adminRole = roleInterface.findByRole("superuser");
+            Role adminRole = roleInterface.findByRole("ADMIN");
             if (adminRole == null) {
                 Role newAdminRole = new Role();
-                newAdminRole.setRole("superuser");
+                newAdminRole.setRole("ADMIN");
                 roleInterface.save(newAdminRole);
             }
 
-            Role userRole = roleInterface.findByRole("user");
+            Role userRole = roleInterface.findByRole("USER");
             if (userRole == null) {
                 Role newUserRole = new Role();
-                newUserRole.setRole("user");
+                newUserRole.setRole("USER");
                 roleInterface.save(newUserRole);
             }
         };

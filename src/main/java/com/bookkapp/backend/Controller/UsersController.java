@@ -17,11 +17,11 @@ public class UsersController {
     UserActions userActions;
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
-//        Hard coded users for demo puproses only
-//        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser"));
-//        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user"));
-//        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user"));
-//        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user"));
+//        Hard coded users for demo purposes only
+//        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "ADMIN"));
+//        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "USER"));
+//        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "USER"));
+//        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "USER"));
     }
 
 

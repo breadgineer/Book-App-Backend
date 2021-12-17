@@ -28,13 +28,15 @@ public class UserActions implements UserDetailsService {
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    public UserActions() {}
+
     public User findUserByEmail(String userEmail) {
         return userDatabaseInterface.findByUserEmail(userEmail);
     }
 
     public void saveUser(User user) {
         user.setUserPwd(bCryptPasswordEncoder.encode(user.getUserPwd()));
-        Role userRole = roleInterface.findByRole("superuser");
+        Role userRole = roleInterface.findByRole("ADMIN");
         user.setRoles(new HashSet<>(Arrays.asList(userRole)));
         userDatabaseInterface.save(user);
     }
