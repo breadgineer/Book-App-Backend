@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 // interface to communication with database
 @Repository
 public interface BooksDatabaseInterface extends MongoRepository<Book, String> {
+
 }

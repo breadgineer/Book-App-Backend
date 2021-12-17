@@ -27,7 +27,7 @@ public class UsersController {
 
 
     //    Endpoint for getting all the users from the database
-    @GetMapping("/all-users")
+    @GetMapping("/")
     public ResponseEntity<List<User>> getAllUsers() {
         try {
             List<User> users = userActions.getAllUsers();
@@ -40,7 +40,7 @@ public class UsersController {
 
     // Endpoint for creating a new user
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping
+    @PostMapping("/all-users")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         System.out.println(user.get_id());
         try {

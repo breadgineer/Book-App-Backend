@@ -22,7 +22,7 @@ public class Book {
 //    private int pageCount;
     private Date publishedDate;
     //    private String thumbnailUrl;
-    private String shortDescription;
+//    private String shortDescription;
     private String longDescription;
     //    private String status;
     private String[] authors;

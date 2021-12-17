@@ -16,7 +16,6 @@ import java.util.Optional;
 @Service
 public class BooksActions {
 
-    @Autowired
     BooksDatabaseInterface books;
 
     public BooksActions(BooksDatabaseInterface books) {
