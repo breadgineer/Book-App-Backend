@@ -1,12 +1,14 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
+import com.bookkapp.backend.model.Book;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 // REST API built for handling CR(U*)D operations of the user database
 //*Updating not implemented
@@ -23,8 +25,6 @@ public class UsersController {
         this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
         this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
     }
-
-
 
     //    Endpoint for getting all the users from the database
     @GetMapping("/all")
@@ -70,4 +70,24 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @PutMapping
+//    public ResponseEntity<String> updatePassword(@RequestBody Book bookData) {
+//        Optional<Book> book = userActions.getBookByID(bookData.get_id());
+//        if (book.isPresent()) {
+//            Book _book = book.get();
+//            _book.set_id(bookData.get_id());
+//            _book.setTitle(bookData.getTitle());
+//            _book.setAuthors(bookData.getAuthors());
+//            _book.setLongDescription(bookData.getLongDescription());
+//            _book.setPublishedDate(bookData.getPublishedDate());
+//            userActions.updateBook(_book);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
 }

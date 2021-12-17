@@ -21,11 +21,17 @@ public class UserActions {
         return userDatabase.findAll();
     }
 
-    // method to list a user by id
+    // method to get a user by id
     public Optional<User> getUserByID(String id) {
         System.out.println(userDatabase.findById(id));
         return userDatabase.findById(id);
     }
+    // method to get a user by password
+//    public Optional<User> getUserByPassword(String pwd) {
+//        System.out.println(userDatabase.findByEmail());
+//        return userDatabase.findById(id);
+//    }
+
 
     // method to add a user
     public User addUser(User user) {
@@ -33,13 +39,13 @@ public class UserActions {
         return user;
     }
 
-
     // method to update a user
-    // not required by now
-//    public void updateUser(User user) {
-//        userDatabase.deleteByName(user.get_name());
-//        userDatabase.save(user);
-//    }
+    public void updateUser(User user) {
+        userDatabase.deleteById(user.get_id());
+        userDatabase.save(user);
+    }
+
+
 
     // method to delete a user
     public void deleteUser(String id) {
