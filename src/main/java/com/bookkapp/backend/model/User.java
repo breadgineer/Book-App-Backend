@@ -1,7 +1,5 @@
 package com.bookkapp.backend.model;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;

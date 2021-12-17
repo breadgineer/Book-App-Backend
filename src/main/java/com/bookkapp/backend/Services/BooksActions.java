@@ -3,6 +3,7 @@ package com.bookkapp.backend.Services;
 import com.bookkapp.backend.Repository.BooksDatabaseInterface;
 import com.bookkapp.backend.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 // class to serve the model object
+@Configuration
 @EnableMongoRepositories
 @Service
 public class BooksActions {
@@ -17,9 +19,9 @@ public class BooksActions {
     @Autowired
     BooksDatabaseInterface books;
 
-//    public BooksActions(BooksDatabaseInterface books) {
-//        this.books = books;
-//    }
+    public BooksActions(BooksDatabaseInterface books) {
+        this.books = books;
+    }
 
     // method to list all books from db
     public List<Book> getAllBooks() {

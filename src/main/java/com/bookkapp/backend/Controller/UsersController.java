@@ -11,7 +11,7 @@ import java.util.List;
 // REST API built for handling CR(U*)D operations of the user database
 //*Updating not implemented
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/books/all-users")
 public class UsersController {
 
     UserActions userActions;
@@ -27,7 +27,7 @@ public class UsersController {
 
 
     //    Endpoint for getting all the users from the database
-    @GetMapping("/all")
+    @GetMapping("/all-users")
     public ResponseEntity<List<User>> getAllUsers() {
         try {
             List<User> users = userActions.getAllUsers();

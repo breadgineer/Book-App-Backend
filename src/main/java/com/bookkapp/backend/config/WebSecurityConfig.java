@@ -1,7 +1,5 @@
 package com.bookkapp.backend.config;
 
-import com.bookkapp.backend.Repository.BooksDatabaseInterface;
-import com.bookkapp.backend.Services.BooksActions;
 import com.bookkapp.backend.Services.UserActions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
