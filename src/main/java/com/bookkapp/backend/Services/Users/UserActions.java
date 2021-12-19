@@ -11,7 +11,8 @@ import java.util.Optional;
 @Service
 public class UserActions {
 
-    UserDatabaseInterface userDatabase;
+    private UserDatabaseInterface userDatabase;
+
     public UserActions(UserDatabaseInterface userDatabase) {
         this.userDatabase = userDatabase;
     }
@@ -26,17 +27,25 @@ public class UserActions {
         System.out.println(userDatabase.findById(id));
         return userDatabase.findById(id);
     }
+
     // method to get a user by password
 //    public Optional<User> getUserByPassword(String pwd) {
 //        System.out.println(userDatabase.findByEmail());
 //        return userDatabase.findById(id);
 //    }
 
+    public Optional<User> fetchUserByUserEmail(String userEmail) {
+        return userDatabase.findByUserEmail(userEmail);
+    }
+
+    public Optional<User> fetchUserByUserEmailAndPwd(String userEmail, String userPwd) {
+        return userDatabase.findByUserEmailAndPassword(userEmail, userPwd);
+    }
 
     // method to add a user
-    public User addUser(User user) {
+    public String addUser(User user) {
         userDatabase.save(user);
-        return user;
+        return "User has been created.";
     }
 
     // method to update a user

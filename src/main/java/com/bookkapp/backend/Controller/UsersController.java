@@ -1,7 +1,6 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
-import com.bookkapp.backend.model.Book;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,25 +37,57 @@ public class UsersController {
         }
     }
 
-    // Endpoint for creating a new user
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        System.out.println(user.get_id());
-        try {
-            String userID = user.get_id();
-            if (userActions.getUserByID(userID).isEmpty()) {
-                User _user = userActions.addUser(user);
-                return new ResponseEntity<>(HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
-            }
+    public ResponseEntity createUser(@RequestBody User user) throws Exception {
+        String tempUserEmail = user.getUserEmail();
+        Optional<User> _user = null;
+        if (tempUserEmail != null) {
+            _user = userActions.fetchUserByUserEmail(tempUserEmail);
+            System.out.println(_user);
+            if (_user.isPresent()) {
+                return new ResponseEntity<>("User with email address " + tempUserEmail + " already exists in the system.",
+                        HttpStatus.CONFLICT);
+                }
+            userActions.addUser(user);
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@RequestBody User user) {
+        String tempUserEmail = user.getUserEmail();
+        String tempUserPwd = user.getUserPwd();
+        Optional<User> _user = null;
+        _user = userActions.fetchUserByUserEmailAndPwd(tempUserEmail, tempUserPwd);
+        System.out.println(_user);
+        if (!_user.isPresent()) {
+            return new ResponseEntity<>("Bad request!", HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(_user, HttpStatus.OK);
         }
     }
+
+    // Endpoint for creating a new user
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @PostMapping
+//    public ResponseEntity<String> createUser(@RequestBody User user) {
+//        System.out.println(user.get_id());
+//        try {
+//            String userID = user.get_id();
+//            if (userActions.getUserByID(userID).isEmpty()) {
+//                String _user = userActions.addUser(user);
+//                return new ResponseEntity<>(HttpStatus.CREATED);
+//            } else {
+//                return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
+//            }
+//        }
+//        catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     // Endpoint for deleting a user by its ID
     @CrossOrigin(origins = "http://localhost:4200")
