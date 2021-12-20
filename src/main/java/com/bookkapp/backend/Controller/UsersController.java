@@ -61,14 +61,14 @@ public class UsersController {
     public ResponseEntity loginUser(@RequestBody Login login) {
         String tempUserEmail = login.getUserEmail();
         String tempUserPwd = login.getUserPwd();
-        Optional<User> _user = null;
-        _user = userActions.fetchUserByUserEmailAndPwd(tempUserEmail, tempUserPwd);
+        Optional<User> _user = userActions.fetchUserByUserEmailAndPwd(tempUserEmail, tempUserPwd);
         System.out.println(_user);
         if (!_user.isPresent()) {
-            return new ResponseEntity<>("Bad request!", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(_user, HttpStatus.BAD_REQUEST);
         } else {
-            userActions.userIsLogged(true);
-            return new ResponseEntity<>(_user, HttpStatus.OK);
+            User user = _user.get();
+            user.setLoggedUser(true);
+            return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }
 

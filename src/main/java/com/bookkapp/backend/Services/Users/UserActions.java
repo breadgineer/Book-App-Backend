@@ -41,8 +41,8 @@ public class UserActions {
         return userDatabase.findByUserEmailAndPassword(userEmail, userPwd);
     }
 
-    public boolean userIsLogged(boolean loggedUser) {
-        return userDatabase.userIsLogged(loggedUser);
+    public void userIsLogged(boolean loggedUser) {
+        userDatabase.userIsLogged(loggedUser);
     }
 
     // method to add a user
