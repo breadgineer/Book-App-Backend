@@ -1,6 +1,7 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
+import com.bookkapp.backend.model.Login;
 import com.bookkapp.backend.model.Password;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
@@ -57,9 +58,9 @@ public class UsersController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
-    public ResponseEntity loginUser(@RequestBody User user) {
-        String tempUserEmail = user.getUserEmail();
-        String tempUserPwd = user.getUserPwd();
+    public ResponseEntity loginUser(@RequestBody Login login) {
+        String tempUserEmail = login.getUserEmail();
+        String tempUserPwd = login.getUserPwd();
         Optional<User> _user = null;
         _user = userActions.fetchUserByUserEmailAndPwd(tempUserEmail, tempUserPwd);
         System.out.println(_user);
