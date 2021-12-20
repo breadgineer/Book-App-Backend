@@ -1,6 +1,7 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
+import com.bookkapp.backend.model.Password;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class UsersController {
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
 //        Hard coded users for demo puposes only
-        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}));
+        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "admin", new String[]{"Manage Users", "Borrow Books"}));
         this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
         this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
         this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
@@ -69,6 +70,8 @@ public class UsersController {
         }
     }
 
+
+
     // Endpoint for creating a new user
 //    @CrossOrigin(origins = "http://localhost:4200")
 //    @PostMapping
@@ -102,23 +105,21 @@ public class UsersController {
         }
     }
 
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @PutMapping
-//    public ResponseEntity<String> updatePassword(@RequestBody Book bookData) {
-//        Optional<Book> book = userActions.getBookByID(bookData.get_id());
-//        if (book.isPresent()) {
-//            Book _book = book.get();
-//            _book.set_id(bookData.get_id());
-//            _book.setTitle(bookData.getTitle());
-//            _book.setAuthors(bookData.getAuthors());
-//            _book.setLongDescription(bookData.getLongDescription());
-//            _book.setPublishedDate(bookData.getPublishedDate());
-//            userActions.updateBook(_book);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping()
+    public ResponseEntity<String> updatePassword(@RequestBody Password password) {
+        Optional<User> user = userActions.getUserByPassword(password.getOldPwd());
+        if (user.isPresent()) {
+            User _user = user.get();
+            _user.setUserPwd(password.getNewPwd());
+            userActions.updateUser(_user);
+            return new ResponseEntity<>(HttpStatus.OK);
+
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
 }

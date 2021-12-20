@@ -29,10 +29,9 @@ public class UserActions {
     }
 
     // method to get a user by password
-//    public Optional<User> getUserByPassword(String pwd) {
-//        System.out.println(userDatabase.findByEmail());
-//        return userDatabase.findById(id);
-//    }
+    public Optional<User> getUserByPassword(String userPwd) {
+        return userDatabase.findByUserPwd(userPwd);
+    }
 
     public Optional<User> fetchUserByUserEmail(String userEmail) {
         return userDatabase.findByUserEmail(userEmail);
