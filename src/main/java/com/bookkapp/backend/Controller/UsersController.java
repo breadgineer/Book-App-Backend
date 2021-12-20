@@ -71,7 +71,6 @@ public class UsersController {
     }
 
 
-
     // Endpoint for creating a new user
 //    @CrossOrigin(origins = "http://localhost:4200")
 //    @PostMapping
