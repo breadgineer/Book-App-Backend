@@ -9,10 +9,10 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BorrowBook implements Serializable {
+public class ReturnBook implements Serializable {
 
     private String username;
-    private String dateOfBorrow;
+    private String bookID;
 
 
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.io.Serializable;
 import java.util.Date;
 
 // model object
@@ -12,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Document("books")
-public class Book {
+public class Book implements Serializable {
 
     // declaration of items
     @MongoId
@@ -22,7 +23,7 @@ public class Book {
     private String shortDescription;
     private String longDescription;
     private String[] authors;
-    private boolean isBorrow = false;
+    private boolean borrow = false;
     private int copies;
     private int availableCopies;
     private BorrowBook[] borrowBookDetails;

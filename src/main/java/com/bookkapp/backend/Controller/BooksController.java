@@ -3,6 +3,7 @@ package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Books.BooksActions;
 import com.bookkapp.backend.model.Book;
+import com.bookkapp.backend.model.ReturnBook;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -108,14 +109,26 @@ public class BooksController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping(value = "/borrow/{id}")
-    public ResponseEntity<Book> borrowBook(@RequestBody String id) {
-
-            Optional<Book> book = booksActions.borrowBook(id);
-            if (book.isPresent())
-                return new ResponseEntity<>(book.get(),HttpStatus.OK);
-            else
+    public ResponseEntity<Book> borrowBook(@RequestBody Book book) {
+            Optional<Book> _book = booksActions.borrowBook(book);
+            if (_book.isPresent()) {
+                return new ResponseEntity<>(_book.get(), HttpStatus.OK);
+            }
+            else {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
+            }
+    }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping(value = "/return")
+    public ResponseEntity<Book> returnBook(@RequestBody ReturnBook book) {
+        Optional<Book> _book = booksActions.returnBook(book.getUsername(), book.getBookID());
+        if (_book.isPresent()) {
+            return new ResponseEntity<>(_book.get(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
     }
 
