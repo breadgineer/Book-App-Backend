@@ -21,7 +21,7 @@ public class UsersController {
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
 //        Hard coded users for demo purposes only
-        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}, false));
+        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "admin", new String[]{"Manage Users", "Borrow Books"}, false));
         this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"},false));
         this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}, false));
         this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}, false));
