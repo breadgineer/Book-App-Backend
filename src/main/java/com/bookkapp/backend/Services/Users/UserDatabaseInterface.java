@@ -16,4 +16,6 @@ public interface UserDatabaseInterface extends MongoRepository<User, String> {
     Optional<User> findByUserPwd(String userEmail);
     @Query("{userEmail: ?0, userPwd: ?1}")
     Optional<User> findByUserEmailAndPassword(String userEmail, String userPwd);
+    @Query("{loggedUser: ?1}")
+    boolean userIsLogged(boolean loggedUser);
 }

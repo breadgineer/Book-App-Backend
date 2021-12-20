@@ -41,6 +41,10 @@ public class UserActions {
         return userDatabase.findByUserEmailAndPassword(userEmail, userPwd);
     }
 
+    public boolean userIsLogged(boolean loggedUser) {
+        return userDatabase.userIsLogged(loggedUser);
+    }
+
     // method to add a user
     public String addUser(User user) {
         userDatabase.save(user);
@@ -59,6 +63,11 @@ public class UserActions {
     public void deleteUser(String id) {
         userDatabase.deleteById(id);
         System.out.println("User has been deleted.");
+    }
+
+    public void loggedUser(User user) {
+        userDatabase.deleteById(user.get_id());
+
     }
 
 }

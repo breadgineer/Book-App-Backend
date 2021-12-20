@@ -19,11 +19,11 @@ public class UsersController {
     UserActions userActions;
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
-//        Hard coded users for demo puposes only
-        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}));
-        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
+//        Hard coded users for demo purposes only
+        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}, false));
+        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"},false));
+        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}, false));
+        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}, false));
     }
 
     //    Endpoint for getting all the users from the database
@@ -66,9 +66,15 @@ public class UsersController {
         if (!_user.isPresent()) {
             return new ResponseEntity<>("Bad request!", HttpStatus.BAD_REQUEST);
         } else {
+            userActions.userIsLogged(true);
             return new ResponseEntity<>(_user, HttpStatus.OK);
         }
     }
+
+//    @PostMapping("/{id}/logout")
+//    public ResponseEntity logoutUser(@PathVariable("id") String id) {
+//        String userStatus =
+//    }
 
 
 
