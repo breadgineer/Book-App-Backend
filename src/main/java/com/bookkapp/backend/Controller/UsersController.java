@@ -68,6 +68,7 @@ public class UsersController {
         } else {
             User user = _user.get();
             user.setLoggedUser(true);
+            userActions.updateUser(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
     }
