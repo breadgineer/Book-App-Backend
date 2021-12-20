@@ -1,17 +1,13 @@
 package com.bookkapp.backend.Controller;
 
 import com.bookkapp.backend.Services.Users.UserActions;
-import com.bookkapp.backend.model.Book;
 import com.bookkapp.backend.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.management.OperatingSystemMXBean;
-import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Optional;
-import java.util.Arrays;
 
 // REST API built for handling CR(U*)D operations of the user database
 //*Updating not implemented
@@ -22,21 +18,12 @@ public class UsersController {
     UserActions userActions;
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
+//        Hard coded users for demo puposes only
+        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "superuser", new String[]{"Manage Users", "Borrow Books"}));
+        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
     }
-
-    // Endpoint for getting a single user by its ID
-    // Implementation not required for now
-//    @CrossOrigin(origins = "http://localhost:4200")
-//    @GetMapping("/{id}")
-//    public ResponseEntity<User> getUserByID(@PathVariable("id") String id) {
-//        Optional<User> user = userActions.getUserByID(id);
-//        System.out.println("User found.");
-//        if (user.isPresent()) {
-//            return new ResponseEntity<>(user.get(), HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
 
     //    Endpoint for getting all the users from the database
     @GetMapping("/all")
@@ -50,25 +37,57 @@ public class UsersController {
         }
     }
 
-    // Endpoint for creating a new user
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        System.out.println(user.get_id());
-        try {
-            String userID = user.get_id();
-            if (userActions.getUserByID(userID).isEmpty()) {
-                User _user = userActions.addUser(user);
-                return new ResponseEntity<>(HttpStatus.CREATED);
-            } else {
-                return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
-            }
+    public ResponseEntity createUser(@RequestBody User user) throws Exception {
+        String tempUserEmail = user.getUserEmail();
+        Optional<User> _user = null;
+        if (tempUserEmail != null) {
+            _user = userActions.fetchUserByUserEmail(tempUserEmail);
+            System.out.println(_user);
+            if (_user.isPresent()) {
+                return new ResponseEntity<>("User with email address " + tempUserEmail + " already exists in the system.",
+                        HttpStatus.CONFLICT);
+                }
+            userActions.addUser(user);
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/login")
+    public ResponseEntity loginUser(@RequestBody User user) {
+        String tempUserEmail = user.getUserEmail();
+        String tempUserPwd = user.getUserPwd();
+        Optional<User> _user = null;
+        _user = userActions.fetchUserByUserEmailAndPwd(tempUserEmail, tempUserPwd);
+        System.out.println(_user);
+        if (!_user.isPresent()) {
+            return new ResponseEntity<>("Bad request!", HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>(_user, HttpStatus.OK);
         }
     }
+
+    // Endpoint for creating a new user
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @PostMapping
+//    public ResponseEntity<String> createUser(@RequestBody User user) {
+//        System.out.println(user.get_id());
+//        try {
+//            String userID = user.get_id();
+//            if (userActions.getUserByID(userID).isEmpty()) {
+//                String _user = userActions.addUser(user);
+//                return new ResponseEntity<>(HttpStatus.CREATED);
+//            } else {
+//                return new ResponseEntity<>("User already exists.", HttpStatus.CONFLICT);
+//            }
+//        }
+//        catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            return new ResponseEntity<>("Internal Server Error", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     // Endpoint for deleting a user by its ID
     @CrossOrigin(origins = "http://localhost:4200")
@@ -82,4 +101,24 @@ public class UsersController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @CrossOrigin(origins = "http://localhost:4200")
+//    @PutMapping
+//    public ResponseEntity<String> updatePassword(@RequestBody Book bookData) {
+//        Optional<Book> book = userActions.getBookByID(bookData.get_id());
+//        if (book.isPresent()) {
+//            Book _book = book.get();
+//            _book.set_id(bookData.get_id());
+//            _book.setTitle(bookData.getTitle());
+//            _book.setAuthors(bookData.getAuthors());
+//            _book.setLongDescription(bookData.getLongDescription());
+//            _book.setPublishedDate(bookData.getPublishedDate());
+//            userActions.updateBook(_book);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+
 }

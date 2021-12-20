@@ -11,7 +11,8 @@ import java.util.Optional;
 @Service
 public class UserActions {
 
-    UserDatabaseInterface userDatabase;
+    private UserDatabaseInterface userDatabase;
+
     public UserActions(UserDatabaseInterface userDatabase) {
         this.userDatabase = userDatabase;
     }
@@ -21,30 +22,39 @@ public class UserActions {
         return userDatabase.findAll();
     }
 
-    // method to list a user by id
+    // method to get a user by id
     public Optional<User> getUserByID(String id) {
         System.out.println(userDatabase.findById(id));
         return userDatabase.findById(id);
     }
 
-    // method to add a user
-    public User addUser(User user) {
-        userDatabase.save(user);
-        return user;
+    // method to get a user by password
+//    public Optional<User> getUserByPassword(String pwd) {
+//        System.out.println(userDatabase.findByEmail());
+//        return userDatabase.findById(id);
+//    }
+
+    public Optional<User> fetchUserByUserEmail(String userEmail) {
+        return userDatabase.findByUserEmail(userEmail);
     }
-    
-    // method to add a superuser
-    public User addSuperUser(User user) {
+
+    public Optional<User> fetchUserByUserEmailAndPwd(String userEmail, String userPwd) {
+        return userDatabase.findByUserEmailAndPassword(userEmail, userPwd);
+    }
+
+    // method to add a user
+    public String addUser(User user) {
         userDatabase.save(user);
-        return user;
+        return "User has been created.";
     }
 
     // method to update a user
-    // not required by now
-//    public void updateUser(User user) {
-//        userDatabase.deleteByName(user.get_name());
-//        userDatabase.save(user);
-//    }
+    public void updateUser(User user) {
+        userDatabase.deleteById(user.get_id());
+        userDatabase.save(user);
+    }
+
+
 
     // method to delete a user
     public void deleteUser(String id) {
