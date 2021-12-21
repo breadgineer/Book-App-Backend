@@ -20,10 +20,12 @@ public class UsersController {
     public UsersController(UserActions userActions) {
         this.userActions = userActions;
 //        Hard coded users for demo puposes only
-        this.userActions.addUser( new User("1", "Viliam.Williams@testemail.sk", "fasdf%%", "admin", new String[]{"Manage Users", "Borrow Books"}));
-        this.userActions.addUser( new User("2", "Jakob.Perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("3", "Pedro.Raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
-        this.userActions.addUser( new User("4", "Wang.Shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("634432", "admin@admin.com", "admin", "admin", new String[]{"Manage Users", "Borrow Books"}));
+        this.userActions.addUser( new User("334334", "user@user.com", "user", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("123415", "viliam.williams@testemail.sk", "fasdf%%", "admin", new String[]{"Manage Users", "Borrow Books"}));
+        this.userActions.addUser( new User("354634", "jakob.perez@testemail.sk", "sdf543%%", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("762363", "pedro.raj@testemail.sk", "asfw4r4", "user", new String[]{"Borrow Books"}));
+        this.userActions.addUser( new User("465435", "wang.shean@testemail.sk", "sf233rASDF@%%", "user", new String[]{"Borrow Books"}));
     }
 
     //    Endpoint for getting all the users from the database
